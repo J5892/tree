@@ -60,6 +60,9 @@ def swipe():
     5: 19,
     6: 9
   }
+  offsets = {
+    0: 10
+  }
 
   while True:
     percent = 0.0
@@ -78,6 +81,10 @@ def swipe():
         n = num
         if l in shown:
           n = shown[l]
+        if l in offsets:
+          n = n - offsets[l]
+          if n < 0:
+            n = n + num
         px = int(round(n * percent)) + begin
         s.setPixelColor(px, 0xFFFFFF)
 
