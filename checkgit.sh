@@ -7,14 +7,14 @@ LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse "$UPSTREAM")
 BASE=$(git merge-base @ "$UPSTREAM")
 
-if [[ $LOCAL = $REMOTE ]]; then
+if [ $LOCAL = $REMOTE ]; then
     echo "Up-to-date"
-elif [[ $LOCAL = $BASE ]]; then
+elif [ $LOCAL = $BASE ]; then
     echo "Need to pull"
     git pull origin master
     sudo killall python
     sudo sh patternlaunch.sh
-elif [[ $REMOTE = $BASE ]]; then
+elif [ $REMOTE = $BASE ]; then
     echo "Need to push"
 else
     echo "Diverged"
