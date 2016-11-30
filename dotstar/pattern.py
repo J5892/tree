@@ -3,7 +3,7 @@
 import time
 import logging
 logging.basicConfig(filename='pattern.log',level=logging.DEBUG)
-
+logging.debug('begin patterns')
 import random
 import urllib2
 import thread
