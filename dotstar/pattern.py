@@ -1,6 +1,9 @@
 #!/usr/bin/python
 
 import time
+import logging
+logging.basicConfig(filename='pattern.log',level=logging.DEBUG)
+
 import random
 import urllib2
 import thread
@@ -24,11 +27,11 @@ def getData(data = {}):
 def watchRequests(v, r):
   if data['requests'] != r:
     r = data['requests']
-    print('request ' + str(r))
+    logging.debug('request ' + str(r))
     if data['version'] != v:
       v = data['version']
-      print('version ' + str(v))
-      print(data)
+      logging.debug('version ' + str(v))
+      logging.debug(data)
       return True, True
     thread.start_new_thread(getData, (), {'data': data})
   return v, r
@@ -79,7 +82,7 @@ def flicker():
     pixel = 0
     if r >= 20:
       r = 0
-      print('20 flickers done')
+      logging.debug('20 flickers done')
       version, requests = watchRequests(version, requests)
       if type(version) == bool:
         break
@@ -109,7 +112,7 @@ def swipe():
 
   while True:
     percent = 0.0
-    print('repeat swipe')
+    logging.debug('repeat swipe')
     version, requests = watchRequests(version, requests)
     if type(version) == bool:
       break
@@ -147,7 +150,7 @@ swipe()
 methods = globals().copy()
 while True:
   function = methods.get(data['pattern'])
-  print('switching')
+  logging.debug('switching')
   if function != None:
     function()
   else:
