@@ -72,7 +72,7 @@ def flicker():
   s.show()
 
   version = data['version']
-  requests = data['requests']
+  requests = 0
 
   r = 0
   while True:
@@ -105,7 +105,7 @@ def swipe():
   }
 
   version = data['version']
-  requests = data['requests']
+  requests = 0
 
   while True:
     percent = 0.0
