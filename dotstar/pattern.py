@@ -29,7 +29,7 @@ def watchRequests(v, r):
       v = data['version']
       print('version ' + str(v))
       print(data)
-      return True
+      return True, True
     thread.start_new_thread(getData, (), {'data': data})
   return v, r
 
