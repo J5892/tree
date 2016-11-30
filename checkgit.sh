@@ -1,5 +1,6 @@
 #!/bin/sh
 
+sudo bash -c '> /home/pi/tree/dotstar/pattern.log'
 git remote update
 
 UPSTREAM=${1:-'@{u}'}
