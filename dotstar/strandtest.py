@@ -28,13 +28,13 @@ strip     = Adafruit_DotStar(numpixels, 12000000)
 # Append "order='gbr'" to declaration for proper colors w/older DotStar strips)
 
 strip.begin()           # Initialize pins for output
-strip.setBrightness(32) # Limit brightness to ~1/4 duty cycle
+strip.setBrightness(255) # Limit brightness to ~1/4 duty cycle
 
 # Runs 10 LEDs at a time along strip, cycling through red, green and blue.
 # This requires about 200 mA for all the 'on' pixels + 1 mA per 'off' pixel.
 
 head  = begin               # Index of first 'on' pixel
-tail  = -5             # Index of last 'off' pixel
+tail  = -15             # Index of last 'off' pixel
 color = 0xFFFFFF       # 'On' color (starts red)
 
 b = 0
@@ -47,7 +47,7 @@ strip.show()
 while True:                              # Loop forever
 
 	strip.setPixelColor(head, color) # Turn on 'head' pixel
-	#strip.setPixelColor(tail, 0)     # Turn off 'tail'
+	strip.setPixelColor(tail, 0)     # Turn off 'tail'
 	strip.show()                     # Refresh strip
 	time.sleep(1.0 / 50)             # Pause 20 milliseconds (~50 fps)
 
