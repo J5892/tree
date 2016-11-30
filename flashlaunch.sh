@@ -1,5 +1,5 @@
 #!/bin/sh
 # flashlaunch.sh
 
-cd /home/pi/tree/Adafruit_DotStar_Pi
+cd /home/pi/tree/dotstar
 sudo python flicker.py
