@@ -2,7 +2,23 @@
 
 import time
 import random
+import urllib2
+import thread
+import json
 from dotstar import Adafruit_DotStar
+
+data = {
+  'requests': 0,
+  'version': 0,
+  'pattern': 'swipe'
+}
+
+def getData(data = {}):
+  time.sleep(5)
+  j = urllib2.urlopen('http://j5.fyi/tree.json').read()
+  d = json.loads(j)
+  data['version'] = d['version']
+  data['pattern'] = d['pattern']
 
 
 num = 500
@@ -64,8 +80,17 @@ def swipe():
     0: 10
   }
 
+  version = data['version']
+  requests = data['requests']
+
   while True:
     percent = 0.0
+    if data['requests'] != requests:
+      requests = data['requests']
+      print('request ' + requests)
+      if data['version'] != version:
+        print('version ' + version)
+      thread.start_new_thread(getData, (), {'data': data})
 
     while percent <= 1.0:
       begin = 0
@@ -92,5 +117,7 @@ def swipe():
       s.show()
       percent = percent + 0.01
       time.sleep(1.0 / 50)
+
+thread.start_new_thread(getData, (), {'data':data})
 
 swipe()
