@@ -72,6 +72,7 @@ def swipe():
         if v > 0:
           v = v - 2
           s.setPixelColor(px, rgb(v))
+        px = px + 1
 
       for l, num in enumerate(layers):
         n = num
@@ -82,6 +83,7 @@ def swipe():
         s.setPixelColor(px, 0xFFFFFF)
 
         begin = begin + num
+      s.show()
       percent = percent + 0.01
       time.sleep(1.0 / 50)
 
