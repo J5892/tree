@@ -88,9 +88,9 @@ def swipe():
     percent = 0.0
     if data['requests'] != requests:
       requests = data['requests']
-      print('request ' + requests)
+      print('request ' + str(requests))
       if data['version'] != version:
-        print('version ' + version)
+        print('version ' + str(version))
       thread.start_new_thread(getData, (), {'data': data})
 
     while percent <= 1.0:
