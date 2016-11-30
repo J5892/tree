@@ -53,6 +53,7 @@ def flicker():
 
 def swipe():
   layers = [77, 59, 49, 42, 31, 22, 12, 6, 6, 1]
+  total = 305
   shown = {
     3: 39,
     4: 28,
@@ -65,6 +66,13 @@ def swipe():
 
     while percent <= 1.0:
       begin = 0
+      px = 0
+      while px < total:
+        v = mono(s.getPixelColor(px))
+        if v > 0:
+          v = v - 2
+          s.setPixelColor(px, rgb(v))
+
       for l, num in enumerate(layers):
         n = num
         if l in shown:
@@ -75,6 +83,6 @@ def swipe():
 
         begin = begin + num
       percent = percent + 0.01
-        time.sleep(1.0 / 50)
+      time.sleep(1.0 / 50)
 
 swipe()
