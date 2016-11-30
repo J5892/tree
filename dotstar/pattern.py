@@ -19,6 +19,7 @@ def getData(data = {}):
   d = json.loads(j)
   data['version'] = d['version']
   data['pattern'] = d['pattern']
+  data['requests'] = data['requests'] + 1
 
 
 num = 500
