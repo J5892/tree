@@ -137,6 +137,8 @@ def swipe():
             n = n + num
         px = int(round(n * percent)) + begin
         s.setPixelColor(px, 0xFFFFFF)
+        s.setPixelColor(px + 1, rgb(170))
+        s.setPixelColor(px + 2, rgb(85))
 
         begin = begin + num
       s.show()
