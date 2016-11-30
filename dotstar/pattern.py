@@ -70,7 +70,7 @@ def swipe():
       while px < total:
         v = mono(s.getPixelColor(px))
         if v > 0:
-          v = v - 2
+          v = v - 5
           s.setPixelColor(px, rgb(v))
         px = px + 1
 
