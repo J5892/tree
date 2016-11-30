@@ -79,7 +79,6 @@ def swipe():
         if l in shown:
           n = shown[l]
         px = int(round(n * percent)) + begin
-        s.setPixelColor(px - 1, 0)
         s.setPixelColor(px, 0xFFFFFF)
 
         begin = begin + num
