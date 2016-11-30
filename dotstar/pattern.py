@@ -60,19 +60,21 @@ def swipe():
     6: 9
   }
 
-  percent = 0.0
-  while percent <= 1.0
-    begin = 0
-    for l, num in enumerate(layers):
-      n = num
-      if l in shown:
-        n = shown[l]
-      px = int(round(n * percent)) + begin
-      s.setPixelColor(px - 1, 0)
-      s.setPixelColor(px, 0xFFFFFF)
+  while True:
+    percent = 0.0
 
-      begin = begin + num
+    while percent <= 1.0:
+      begin = 0
+      for l, num in enumerate(layers):
+        n = num
+        if l in shown:
+          n = shown[l]
+        px = int(round(n * percent)) + begin
+        s.setPixelColor(px - 1, 0)
+        s.setPixelColor(px, 0xFFFFFF)
+
+        begin = begin + num
       percent = percent + 0.01
-      time.sleep(1.0 / 50)
+        time.sleep(1.0 / 50)
 
 swipe()
