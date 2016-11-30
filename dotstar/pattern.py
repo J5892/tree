@@ -21,6 +21,18 @@ def getData(data = {}):
   data['pattern'] = d['pattern']
   data['requests'] = data['requests'] + 1
 
+def watchRequests(v, r):
+  if data['requests'] != r:
+    r = data['requests']
+    print('request ' + str(r))
+    if data['version'] != v:
+      v = data['version']
+      print('version ' + str(v))
+      print(data)
+      return True
+    thread.start_new_thread(getData, (), {'data': data})
+  return v, r
+
 
 num = 500
 
@@ -59,14 +71,25 @@ def flicker():
   s.setPixelColor(0, 0x000000)
   s.show()
 
+  version = data['version']
+  requests = data['requests']
+
+  r = 0
   while True:
     pixel = 0
+    if r >= 20:
+      r = 0
+      print('20 flickers done')
+      version, requests = watchRequests(version, requests)
+      if type(version) == bool:
+        break
     while pixel < num:
       twinkle(pixel)
       pixel = pixel + 1
 
     s.show()
     time.sleep(1.0 / 20)
+    r = r + 1
 
 def swipe():
   layers = [77, 59, 49, 42, 31, 22, 12, 6, 6, 1]
@@ -86,14 +109,10 @@ def swipe():
 
   while True:
     percent = 0.0
-    if data['requests'] != requests:
-      requests = data['requests']
-      print('request ' + str(requests))
-      if data['version'] != version:
-        version = data['version']
-        print('version ' + str(version))
-        print(data)
-      thread.start_new_thread(getData, (), {'data': data})
+    print('repeat swipe')
+    version, requests = watchRequests(version, requests)
+    if type(version) == bool:
+      break
 
     while percent <= 1.0:
       begin = 0
@@ -124,3 +143,12 @@ def swipe():
 thread.start_new_thread(getData, (), {'data':data})
 
 swipe()
+
+methods = globals().copy()
+while True:
+  function = methods.get(data['pattern'])
+  print('switching')
+  if function != None:
+    function()
+  else:
+    swipe()
