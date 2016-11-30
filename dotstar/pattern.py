@@ -101,10 +101,12 @@ def swipe():
     3: 39,
     4: 28,
     5: 19,
-    6: 9
+    6: 9,
+    7: 2,
+    8: 2
   }
   offsets = {
-    0: 10
+    0: 12
   }
 
   version = data['version']
