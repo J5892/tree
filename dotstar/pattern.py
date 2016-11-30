@@ -124,6 +124,8 @@ def swipe():
         v = mono(s.getPixelColor(px))
         if v > 0:
           v = v - 5
+          if (v <= 10):
+            v = 10
           s.setPixelColor(px, rgb(v))
         px = px + 1
 
